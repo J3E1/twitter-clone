@@ -1,8 +1,19 @@
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import AuthModal from '@/components/Modals/AuthModal';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
-	return <h1>Hello</h1>;
+	return (
+		<>
+			<Head>
+				<title>Home</title>
+			</Head>
+			<Header label='Home' />
+		</>
+	);
 }

@@ -2,6 +2,7 @@ import Header from '@/components/UI/Header';
 import UserBio from '@/components/User/UserBio';
 import UserHero from '@/components/User/UserHero';
 import useUser from '@/hooks/useUser';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export default function UserView() {
@@ -20,6 +21,9 @@ export default function UserView() {
 
 	return (
 		<>
+			<Head>
+				<title>{fetchedUser?.username}</title>
+			</Head>
 			<Header showBackArrow label={fetchedUser?.name} />
 			<UserHero userId={userId as string} coverImage={fetchedUser.coverImage} />
 			<UserBio fetchedUser={fetchedUser} userId={userId as string} />

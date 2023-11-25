@@ -4,6 +4,7 @@ import prisma from './prisma.db';
 
 export default async function serverAuth(req: NextApiRequest) {
 	const session = await getSession({ req });
+	console.log('🚀 ~ file: serverAuth.ts:7 ~ serverAuth ~ session:', session);
 
 	if (!session?.user?.email) throw new Error('Not logged in');
 
@@ -11,7 +12,7 @@ export default async function serverAuth(req: NextApiRequest) {
 		where: { email: session.user.email },
 	});
 
-	if (!currentUser) throw new Error('Not logged in');
+	if (!currentUser) throw new Error('Not valid user');
 
 	return { currentUser };
 }

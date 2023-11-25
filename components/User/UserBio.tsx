@@ -2,10 +2,12 @@ import useCurrentUser from '@/hooks/useCurrentUser';
 import Button from '../UI/Button';
 import { BiCalendar } from 'react-icons/bi';
 import { format } from 'date-fns';
+import useEditModal from '@/hooks/useEditModal';
 
 type Props = { fetchedUser: Record<string, string>; userId: string };
 export default function UserBio({ fetchedUser, userId }: Props) {
 	const { data: currentUser } = useCurrentUser();
+	const editModal = useEditModal();
 
 	const createdAt = () => {
 		if (!fetchedUser?.createdAt) {
@@ -18,14 +20,10 @@ export default function UserBio({ fetchedUser, userId }: Props) {
 		<div className='border-b-[1px] border-neutral-800 pb-4'>
 			<div className='flex justify-end p-2'>
 				{currentUser?.id === userId ? (
-					<Button
-						secondary
-						label='Edit'
-						// onClick={editModal.onOpen}
-					/>
+					<Button secondary label='Edit' onClick={editModal.onOpen} />
 				) : (
 					<Button
-						// onClick={toggleFollow}
+						// onClick={toggleFollow}p
 						label={'Follow'}
 						// label={isFollowing ? 'Unfollow' : 'Follow'}
 						// secondary={!isFollowing}

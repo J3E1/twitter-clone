@@ -1,13 +1,20 @@
 import useUserList from '@/hooks/useUserList';
 import Avatar from './Avatar';
 import Link from 'next/link';
+import useUser from '@/hooks/useUser';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 type Props = {};
 export default function FollowBar({}: Props) {
-	const { data: users = [] } = useUserList();
+	const { data: currentUser } = useCurrentUser();
+	const { data: allUsers = [] } = useUserList();
+
+	const users = allUsers.filter(
+		(user: { id: string }) => user.id !== currentUser?.id
+	);
 
 	return (
-		<div className='px-6 py-4 hidden lg:block'>
+		<div className='px-6 py-4 hidden lg:block col-span-[0] lg:col-span-3'>
 			<div className='bg-neutral-800 rounded-xl p-4'>
 				<h2 className='text-white text-xl font-semibold'>Who to follow</h2>
 				<div className='flex flex-col gap-6 mt-4'>

@@ -12,7 +12,7 @@ export default async function handler(
 
 		return res.status(200).json(users);
 	} catch (error) {
-		console.log('🚀 ~ file: register.ts:12 ~ error:', error);
+		console.log('🚀 ~ file: index.ts:15 ~ error:', error);
 		return res.status(500).end();
 	}
 }

@@ -11,13 +11,13 @@ export default function SidebarLogo({}: Props) {
         rounded-full 
         h-14
         w-14
-        p-4 
+        p-4
         flex 
         items-center 
         justify-center 
         hover:bg-blue-300 
         hover:bg-opacity-10 
-        cursor-pointer
+        cursor-pointer        
     '>
 			<BsTwitter size={28} color='white' />
 		</div>

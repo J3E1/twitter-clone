@@ -1,3 +1,4 @@
+import PostFeed from '@/components/Posts/PostFeed';
 import Header from '@/components/UI/Header';
 import UserBio from '@/components/User/UserBio';
 import UserHero from '@/components/User/UserHero';
@@ -27,7 +28,7 @@ export default function UserView() {
 			<Header showBackArrow label={fetchedUser?.name} />
 			<UserHero userId={userId as string} coverImage={fetchedUser.coverImage} />
 			<UserBio fetchedUser={fetchedUser} userId={userId as string} />
-			{/*<PostFeed userId={userId as string} /> */}
+			<PostFeed userId={userId as string} />
 		</>
 	);
 }

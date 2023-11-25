@@ -10,7 +10,7 @@ export default async function handler(
 	try {
 		const userId = req.query.userId;
 
-		if (!userId || typeof userId !== 'string')
+		if (!userId || typeof userId !== 'string' || userId === 'undefined')
 			throw new Error('Invalid userId');
 
 		const user = await prisma.user.findUnique({
@@ -32,7 +32,10 @@ export default async function handler(
 
 		return res.status(200).json({ ...user, followersCount });
 	} catch (error) {
-		console.log('🚀 ~ file: register.ts:12 ~ error:', error);
+		console.log(
+			'🚀 ~ file: [userId].ts:36 ~ (error as Error).message:',
+			(error as Error).message
+		);
 		return res.status(500).end();
 	}
 }

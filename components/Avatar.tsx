@@ -46,7 +46,7 @@ export default function Avatar({
 				}}
 				alt='Avatar'
 				// onClick={onClick}
-				src={profileImage || '/images/placeholder.jpg'}
+				src={fetchedUser?.profileImage || '/images/placeholder.jpg'}
 			/>
 		</div>
 	);

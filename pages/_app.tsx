@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app';
 import Layout from '@/components/Layout';
-import Modal from '@/components/Modal';
 import AuthModal from '@/components/Modals/AuthModal';
 import '@/styles/globals.css';
 import { SessionProvider } from 'next-auth/react';

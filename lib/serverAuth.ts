@@ -1,10 +1,13 @@
-import { NextApiRequest } from 'next';
-import { getSession } from 'next-auth/react';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession, Session } from 'next-auth';
 import prisma from './prisma.db';
+import NextAuth from '@/pages/api/auth/[...nextauth]';
 
-export default async function serverAuth(req: NextApiRequest) {
-	const session = await getSession({ req });
-	console.log('🚀 ~ file: serverAuth.ts:7 ~ serverAuth ~ session:', session);
+export default async function serverAuth(
+	req: NextApiRequest,
+	res: NextApiResponse
+) {
+	const session = (await getServerSession(req, res, NextAuth)) as Session;
 
 	if (!session?.user?.email) throw new Error('Not logged in');
 

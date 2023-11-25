@@ -9,7 +9,7 @@ export default function SidebarTweetButton({}: Props) {
 			<div
 				className='
         mt-6
-        lg:hidden 
+        md:hidden 
         rounded-full 
         h-14
         w-14
@@ -28,7 +28,7 @@ export default function SidebarTweetButton({}: Props) {
 				className='
         mt-6
         hidden 
-        lg:block 
+        md:block 
         px-4
         py-2
         rounded-full
@@ -39,7 +39,7 @@ export default function SidebarTweetButton({}: Props) {
 				<p
 					className='
             hidden 
-            lg:block 
+            md:block 
             text-center
             font-semibold
             text-white 

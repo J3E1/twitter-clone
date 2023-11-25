@@ -23,8 +23,7 @@ export default function Sidebar({}: Props) {
 			label: 'Notifications',
 			href: '/notifications',
 			auth: true,
-			// alert: currentUser?.hasNotification,
-			alert: undefined,
+			alert: currentUser?.hasNotification,
 		},
 		{
 			icon: FaUser,
@@ -35,8 +34,8 @@ export default function Sidebar({}: Props) {
 	];
 
 	return (
-		<div className='col-span-1 h-full pr-4 md:pr-6'>
-			<div className='flex flex-col items-end'>
+		<div className='col-span-1 md:col-span-3 h-full md:pr-6'>
+			<div className='flex flex-col items-center md:items-end'>
 				<div className='space-y-2 lg:w-[230px]'>
 					<SidebarLogo />
 					{items.map(item => (

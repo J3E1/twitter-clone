@@ -5,6 +5,7 @@ type Props = {
 	disabled?: boolean;
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	label?: string;
+	required?: boolean;
 	rounded?: 'md' | 'full' | 'sm' | 'none';
 };
 export default function Input({
@@ -15,6 +16,7 @@ export default function Input({
 	disabled,
 	label,
 	rounded,
+	required = false,
 }: Props) {
 	return (
 		<div className='w-full'>
@@ -27,6 +29,7 @@ export default function Input({
 				value={value}
 				placeholder={placeholder}
 				type={type}
+				required={required}
 				className={` w-full
                     py-4 
                     px-6 

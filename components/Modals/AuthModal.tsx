@@ -1,8 +1,11 @@
 import useAuthModal from '@/hooks/useAuthModal';
 import { useCallback, useState } from 'react';
-import Input from '../Input';
+import { toast } from 'react-hot-toast';
 import Modal from '../Modal';
 import Head from 'next/head';
+import { signIn } from 'next-auth/react';
+import axios from 'axios';
+import Input from '../UI/Input';
 
 type Props = {};
 export default function AuthModal({}: Props) {
@@ -19,16 +22,41 @@ export default function AuthModal({}: Props) {
 		try {
 			setIsLoading(true);
 
+			if (regMode) {
+				console.log('🚀 ~ file: AuthModal.tsx:13 ~ AuthModal ~', {
+					password,
+					name,
+					username,
+					email,
+				});
+				const res = await axios.post('/api/register', {
+					password,
+					name,
+					username,
+					email,
+				});
+
+				toast.success('Registered successfully');
+
+				await signIn('credentials', {
+					email,
+					password,
+				});
+			} else {
+				await signIn('credentials', {
+					email,
+					password,
+				});
+				toast.success('Logged in');
+			}
 			// await signIn('credentials', {
 			// 	email,
 			// 	password,
 			// });
 
-			// toast.success('Logged in');
-
 			onClose();
 		} catch (error) {
-			// toast.error('Something went wrong');
+			toast.error('Something went wrong');
 		} finally {
 			setIsLoading(false);
 		}
@@ -44,6 +72,8 @@ export default function AuthModal({}: Props) {
 				value={email}
 				disabled={isLoading}
 				rounded='full'
+				type='email'
+				required
 			/>
 			{regMode && (
 				<>
@@ -53,6 +83,8 @@ export default function AuthModal({}: Props) {
 						value={name}
 						onChange={e => setName(e.target.value)}
 						rounded='full'
+						type='text'
+						required
 					/>
 					<Input
 						disabled={isLoading}
@@ -60,6 +92,8 @@ export default function AuthModal({}: Props) {
 						value={username}
 						onChange={e => setUsername(e.target.value)}
 						rounded='full'
+						type='text'
+						required
 					/>
 				</>
 			)}
@@ -70,6 +104,7 @@ export default function AuthModal({}: Props) {
 				value={password}
 				disabled={isLoading}
 				rounded='full'
+				required
 			/>
 		</div>
 	);

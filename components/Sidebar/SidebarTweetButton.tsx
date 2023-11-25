@@ -1,9 +1,11 @@
+import useAuthModal from '@/hooks/useAuthModal';
 import { FaFeather } from 'react-icons/fa';
 
 type Props = {};
 export default function SidebarTweetButton({}: Props) {
+	const { onOpen } = useAuthModal();
 	return (
-		<div onClick={() => {}}>
+		<div onClick={onOpen}>
 			<div
 				className='
         mt-6

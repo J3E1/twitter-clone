@@ -3,7 +3,7 @@ type Props = {
 	secondary?: boolean;
 	fullWidth?: boolean;
 	large?: boolean;
-	onClick: () => void;
+	onClick?: () => void;
 	disabled?: boolean;
 	outline?: boolean;
 };

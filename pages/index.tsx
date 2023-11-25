@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import Layout from '@/components/Layout';
-import Header from '@/components/Header';
+import Header from '@/components/UI/Header';
 import AuthModal from '@/components/Modals/AuthModal';
 import Head from 'next/head';
 

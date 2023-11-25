@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { Poppins } from 'next/font/google';
 
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar/Sidebar';
 import FollowBar from './FollowBar';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['200', '400', '700'] });

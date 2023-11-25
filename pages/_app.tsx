@@ -3,14 +3,17 @@ import Layout from '@/components/Layout';
 import Modal from '@/components/Modal';
 import AuthModal from '@/components/Modals/AuthModal';
 import '@/styles/globals.css';
+import { SessionProvider } from 'next-auth/react';
+import { Toaster } from 'react-hot-toast';
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<>
+		<SessionProvider session={pageProps.session}>
+			<Toaster />
 			<AuthModal />
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
-		</>
+		</SessionProvider>
 	);
 }

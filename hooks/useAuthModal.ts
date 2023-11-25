@@ -10,8 +10,8 @@ interface LoginModalStore {
 }
 
 const useAuthModal = create<LoginModalStore>(set => ({
-	isOpen: true,
-	regMode: true,
+	isOpen: false,
+	regMode: false,
 	onOpen: () => set({ isOpen: true }),
 	onClose: () => set({ isOpen: false }),
 	toggleMode: () => set(state => ({ regMode: !state.regMode })),

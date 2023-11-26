@@ -13,6 +13,7 @@ export default async function handler(
 
 	try {
 		const { userId } = req.body as { userId?: string };
+		console.log('🚀 ~ file: follow.ts:16 ~ userId:', req.body);
 
 		const { currentUser } = await serverAuth(req, res);
 
@@ -30,30 +31,34 @@ export default async function handler(
 			throw new Error('Invalid ID');
 		}
 
-		let updatedFollowingIds = [...(user.followingIds || [])];
+		let updatedFollowingIds = [...(currentUser.followingIds || [])];
 
 		if (req.method === 'POST') {
-			updatedFollowingIds.push(userId);
+			if (updatedFollowingIds.includes(userId))
+				updatedFollowingIds = updatedFollowingIds.filter(
+					followingId => followingId !== userId
+				);
+			else updatedFollowingIds.push(userId);
 
-			// try {
-			// 	await prisma.notification.create({
-			// 		data: {
-			// 			body: 'Someone followed you!',
-			// 			userId,
-			// 		},
-			// 	});
+			try {
+				await prisma.notification.create({
+					data: {
+						body: 'Someone followed you!',
+						userId,
+					},
+				});
 
-			// 	await prisma.user.update({
-			// 		where: {
-			// 			id: userId,
-			// 		},
-			// 		data: {
-			// 			hasNotification: true,
-			// 		},
-			// 	});
-			// } catch (error) {
-			// 	console.log(error);
-			// }
+				await prisma.user.update({
+					where: {
+						id: userId,
+					},
+					data: {
+						hasNotification: true,
+					},
+				});
+			} catch (error) {
+				console.log(error);
+			}
 		}
 
 		if (req.method === 'DELETE') {

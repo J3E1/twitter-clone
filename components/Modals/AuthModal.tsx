@@ -112,7 +112,7 @@ export default function AuthModal({}: Props) {
 	const footerContent = (
 		<div className='text-neutral-400 text-center mt-4'>
 			<p>
-				{!regMode ? 'First time using Twitter?' : 'Already have an account?'}{' '}
+				{!regMode ? 'First time using Shitter?' : 'Already have an account?'}{' '}
 				<span
 					onClick={onToggle}
 					className='
